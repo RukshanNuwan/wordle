@@ -19,7 +19,7 @@ const App = () => {
 
   return (
     <div>
-      <h1>Wordle</h1>
+      <h1>Wordle Game</h1>
 
       {solution && <Wordle solution={solution}/>}
     </div>
