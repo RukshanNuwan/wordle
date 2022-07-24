@@ -1,9 +1,11 @@
 const App = () => {
   return (
-    <div className="app">
+    <div>
       app
     </div>
   );
 };
+
+// TODO: Add an API instead of json file
 
 export default App;
