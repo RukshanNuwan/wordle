@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {BsArrowLeft, BsArrowReturnLeft} from "react-icons/bs";
 
-const Keypad = () => {
+const Keypad = ({usedKeys}) => {
   const [letters, setLetters] = useState(null);
 
   useEffect(() => {
@@ -15,8 +15,10 @@ const Keypad = () => {
   return (
     <div className="keypad">
       {letters && letters.map((letter, index) => {
+        const color = usedKeys[letter.key];
+
         return (
-          <div key={index} className={(letter.key === 'ENTER' || letter.key === 'BACKSPACE') && 'btn-action'}>
+          <div key={index} className={(letter.key === 'ENTER' || letter.key === 'BACKSPACE') ? 'btn-action' : color}>
             {letter.key === 'ENTER'
               ? <BsArrowReturnLeft/>
               : letter.key === 'BACKSPACE'
