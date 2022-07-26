@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react';
 
 import Wordle from './components/Wordle';
+import axios from "axios";
 
 // TODO: Add an API instead of json file
 
@@ -8,13 +9,26 @@ const App = () => {
   const [solution, setSolution] = useState(null);
 
   useEffect(() => {
-    // TODO: Add axios to fetch the data instead of fetch api
-    fetch('http://localhost:3001/solutions')
-      .then(response => response.json())
-      .then(data => {
+    const fetchData = async () => {
+      const url = 'https://wordle-answers-solutions.p.rapidapi.com/answers';
+
+      try {
+        const response = await axios.get(url, {
+          headers: {
+            'X-RapidAPI-Key': '074d2f3ae3mshbd5c04c0b4aa281p189a38jsn0051b16565cd',
+            'X-RapidAPI-Host': 'wordle-answers-solutions.p.rapidapi.com'
+          }
+        });
+
+        const data = response.data.data;
         const randomSolution = data[Math.floor(Math.random() * data.length)];
-        setSolution(randomSolution.word);
-      });
+        setSolution(randomSolution.answer);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
   }, [setSolution]);
 
   return (

@@ -16,15 +16,15 @@ const useWordle = (solution) => {
 
     // Find any green letters in the solution
     formattedGuess.forEach((letter, index) => {
-      if (solutionArray[index] === letter.key) {
+      if (solutionArray[index] === letter.key.toUpperCase()) {
         formattedGuess[index].color = 'green';
         solutionArray[index] = null;
       }
     });
 
-    // Find any red letters in the solution
+    // Find any yellow letters in the solution
     formattedGuess.forEach((letter, index) => {
-      if (solutionArray.includes(letter.key) && letter.color !== 'green') {
+      if (solutionArray.includes(letter.key.toUpperCase()) && letter.color !== 'green') {
         formattedGuess[index].color = 'yellow';
         solutionArray[solutionArray.indexOf(letter.key)] = null;
       }
@@ -34,7 +34,7 @@ const useWordle = (solution) => {
   };
 
   const addNewGuess = (formattedGuess) => {
-    if (currentGuess === solution) setIsCorrect(true);
+    if (currentGuess.toUpperCase() === solution) setIsCorrect(true);
 
     setGuesses(prevGuesses => {
       let newGuesses = [...prevGuesses];

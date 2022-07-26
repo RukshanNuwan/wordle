@@ -1,15 +1,22 @@
 import {useEffect, useState} from "react";
 import {BsArrowLeft, BsArrowReturnLeft} from "react-icons/bs";
 
+import Axios from '../api/axios';
+
 const Keypad = ({usedKeys}) => {
   const [letters, setLetters] = useState(null);
 
   useEffect(() => {
-    // TODO: Add axios to fetch the data instead of fetch api
-    fetch('http://localhost:3001/letters')
-      .then(response => response.json())
-      .then(data => setLetters(data))
-      .catch(error => console.log(error));
+    const fetchLetters = async () => {
+      try {
+        const response = await Axios.get('/letters');
+        setLetters(response.data);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchLetters();
   }, []);
 
   return (
