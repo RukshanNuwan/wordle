@@ -5,16 +5,12 @@ import Grid from "./Grid";
 import Keypad from "./Keypad";
 
 const Wordle = ({solution}) => {
-  const {currentGuess, guesses, isCorrect, turn, handleKeyUp} = useWordle(solution);
+  const {currentGuess, guesses, isCorrect, turn, usedKeys, handleKeyUp} = useWordle(solution);
 
   useEffect(() => {
     window.addEventListener('keyup', handleKeyUp);
     return () => window.removeEventListener('keyup', handleKeyUp);
   }, [handleKeyUp]);
-
-  useEffect(() => {
-    console.log(guesses, turn, isCorrect);
-  }, [guesses, turn, isCorrect]);
 
   return (
     <div>
@@ -27,7 +23,7 @@ const Wordle = ({solution}) => {
         turn={turn}
       />
 
-      <Keypad/>
+      <Keypad usedKeys={usedKeys}/>
     </div>
   );
 };
