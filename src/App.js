@@ -3,8 +3,6 @@ import {useEffect, useState} from 'react';
 import Wordle from './components/Wordle';
 import axios from "axios";
 
-// TODO: Add an API instead of json file
-
 const App = () => {
   const [solution, setSolution] = useState(null);
 
@@ -41,3 +39,5 @@ const App = () => {
 };
 
 export default App;
+
+// © 2022 shanwijendra.dev
