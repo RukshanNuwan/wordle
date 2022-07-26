@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     // TODO: Add axios to fetch the data instead of fetch api
-    fetch('http://localhost:3000/solutions')
+    fetch('http://localhost:3001/solutions')
       .then(response => response.json())
       .then(data => {
         const randomSolution = data[Math.floor(Math.random() * data.length)];
